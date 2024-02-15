@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud By Adi YT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Hammersmith One', sans-serif;
+        }
+
+        .navbar {
+            background-color: transparent;
+            border-bottom: 0.5px solid #ccc; /* Add a 0.5 pixel line below the navbar */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+        .form-group {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .form-group input {
+            margin-right: 10px;
+        }
+
+        .video {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        .video img {
+            max-width: 300px;
+            margin-right: 20px;
+        }
+
+        .video-details {
+            flex: 1;
+        }
+
+        .video-details h2 {
+            font-size: 20px;
+        }
+
+        .video-details p {
+            font-size: 16px;
+        }
+
+        .download-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">Cloud By Adi YT</a>
+    </nav>
+
+    <form method="POST">
+        <div class="form-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Enter a keyword" required>
+            <button type="submit" class="btn btn-danger">Search</button>
+        </div>
+    </form>
+
+    <div class="video-list">
+        {% for video in videos %}
+        <div class="video">
+            <img src="{{ video.thumbnail_url }}" alt="Thumbnail">
+            <div class="video-details">
+                <h2>Title: {{ video.title }}</h2>
+                <p>Description: {{ video.description }}</p>
+                <p>Views: {{ video.views }}</p>
+                <p>Duration: {{ video.duration }} seconds</p>
+                <a href="{{ url_for('download', video_id=video.video_id) }}" class="download-button" target="_blank">Download</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        &copy; 2023 Cloud By Adi YT
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
